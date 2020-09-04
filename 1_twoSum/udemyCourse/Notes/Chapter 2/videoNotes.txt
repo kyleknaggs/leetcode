@@ -1,0 +1,296 @@
+---------------------------------
+---------------------------------
+
+4: COMPLEXITY THEORY
+
+Complexity theory is the classification of computational problems according to how difficult they are.
+
+Any algorithm should have 3 key features:
+  1. It should be correct.
+  2. It should be understandable.
+  3. It should be efficient.
+
+There are several types of complexity that you can study:
+  1. Time: The amount of time required to solve a problem
+  2. Space: The amount of memory or disk space required by the algorithm
+  3. Other Resources: The amount of a scare resource used by an algorithm.
+    This scarce resource could be:
+      Network communication
+      Graphics resources
+      Graphics hardware
+      Hardware such as 3D printers, CPUs etc.
+
+The circumstances of the algorithm itself.
+
+The simplest type of algorithm is an algorithm that performs the same way in every case.
+However, not all algorithms are like this.
+Some algorithms do well with one set of data, but terribly with another.
+Because of this you need to evaluate whether this is an "every case" algorithm.
+And if it is not an "every case" algorithm you need to analyze the:
+  1. Best case
+  2. Average case
+  3. Worse case
+  4. Expected case
+
+To be on the safe side, many people often concentrate on an algorithm's worst case behaviour.
+
+People study algorithms so that they can:
+  1. Predict a particular algorithm's behaviour
+  2. Compare the performance of different algorithms
+  3. The ability to prove certain characteristics about an algorithm
+
+Useful resource:
+https://en.wikipedia.org/wiki/Computational_complexity_theory
+
+---------------------------------
+---------------------------------
+
+5: BIG O NOTATION
+
+Big O notation is used to study the performance of algorithms.
+
+Big O notation is normally focused on the:
+
+  1. The worst case behaviour of an algorithm.
+  2. The asymptotic behaviour of an algorithm.
+
+Big O notation is usually focused on these 2 things because:
+
+  1. The worst case behaviour of an algorithm is the safest way to look at an algorithm's performance.
+  2. The asymptotic behaviour of an algorithm means the algorithm's performance as the size of the problem grows very large.
+
+For Example:
+
+  If you wanted to sort a list of numbers using an algorithm:
+
+    If the list only contains 2 numbers then it probably doesn't matter what algorithm you use.
+    This is because no matter what algorithm you use the computer would be able to sort the list very quickly.
+
+    However if the list contained a million number then the amount of time taken to sort the number may vary greatly depending on which algorithm you use.
+
+  The increase in the size of the data set from 2 to 100 is an example of asymptotic behaviour.
+
+You can figure out an algorithm's Big O notation by following 5 rules:
+
+  1. If an algorithm performs f(N) steps then it is O(f(N)).
+  2. If an algorithm performs f(N) steps followed by g(N) steps that it is O(f(N) + g(N)).
+  3. If f(N) > g(N) for large N, then O(f(N) + g(N)) = O(f(N)).
+  4. If an algorithm performs g(N) steps for each of f(N) steps, then it is O(f(N)xg(N)).
+  5. Ignore constant multiples: O(Cxf(N)) = O(f(N)) or O(f(CxN)) = O(f(N))
+
+Note on Pronounciation:
+O(f(N)) is pronounced "Order f of N"
+O(f(N) + g(N)) is pronouced "Order f of N plus g of N"
+
+---------------------------------
+---------------------------------
+
+6: TYPICAL RUNTIME FUNCTIONS
+
+There are some common complexity functions that you will encounter when you used Big O notation.
+There is also logic that you can use to explain how a particular algorithm ends up with a particular runtime function.
+
+------------
+
+  1. O(1) => Order 1 algorithms
+    O(1) algorithms take a constant amount of time.
+    These algorithmss take a constant amount of time because they always perform a fixed number of steps.
+    You can do this because you get to ignore constant multiples when working with Big O notation.
+    The important characteristics of all O(1) algorithms is that the number of steps does not increase an N increases.
+    Example of an algorithm with a fixed number of steps:
+
+      var characters = ["a","b","c"];
+      function getFirstIndexInArray(array) {
+          return array[0];
+      }
+      getFirstIndexInArray(characters);
+      // Returns: "a"
+
+    For Example:
+
+      O(1) => An algorithm that takes 1 step
+      O(1) => An algorithm that takes 1,000 steps
+      O(1) => An algorithm that takes 1,000,000 steps
+
+  2. O(N) => Order N algorithms
+    O(N) algorithms perform 1 action per input.
+    Example of an algorithm that performs 1 action per input:
+
+      function getLargestNumber(array) {
+          var largestNumber = array[0];
+          if(array.length > 1){
+              for(var i=0; i<array.length; i++){
+                  var currentNumber = array[i];
+                  if(currentNumber > largestNumber){
+                      largestNumber = currentNumber;
+                  }
+              }
+          };
+          return largestNumber;
+      }
+
+      getLargestNumber([3,5,2,1,4]);
+      // Returns: 5
+
+  3. O(N^2) => Order N squared algorithm
+    An algorithm that performs N actions, N amount of times per input.
+    Example: An algorithm that loops through the inputs, and for each input, may perform another loop through the inputs.
+
+      for i = 1 to N...
+        for j = 1 to N...
+
+  4. O(N^C) => Order N to the C algorithm for some constant C.
+    An algorithm that performs N numbers actions, with C loops nested inside of each other.
+    The rule of thumb is that the bigger the power of N, the faster the function grows and increases.
+    Example: An algorithm that loops through the input, and for each input may perform C number of nested loops.
+
+      for i = 1 to N...
+        for j = 1 to N...
+          for k = 1 to N...
+            ...
+
+  There are also some "more exotic" algorithms.
+
+    Example:
+
+      O(N^.5) => Order N to the one half ( N to the one half is the same as the square root of N.)
+      O(N^1.5) => Order N to the one point five.
+
+  5. O(LOG N) => Order to the log N.
+
+    An algorithm whose behaviour depends on the logarithm of N is a search that divides items being searched into 2 pieces at each step.
+    All log bases are the same in Big O notation.
+
+  6. O(2^N) => Order two to the N.
+
+    An example of an algorithm with order two to the N behaviour is an algorithm that is attempting to divide object into 2 groups.
+    Because there are 2 possible options for each group, the possible number of assignments is 2 to the power of N where N is the number of objects.
+
+  7. O(N!) =>
+
+    Logarithms with Order to the N factorial performance often involve arrangements of items.
+    This is because there are N factorial ways that you can arrange N items.
+
+------------
+
+What is a Logarithm in mathematics?
+
+  The logarithm of a given number is the exponent to which another number must be raised in order to produce the given number.
+  It is the inverse of raising a number to an exponent.
+  Another name for the fixed number is the base.
+
+  Example of exponential notation:
+
+    2^0 = 1
+    2^1 = 2
+    2^2 = 4
+    2^3 = 8
+    2^4 = 16
+
+  Example of logarithmic notation:
+
+    The logarithm base 2 of 1 is 0.
+    The logarithm base 2 of 2 is 1.
+    The logarithm base 2 of 4 is 2.
+    The logarithm base 2 of 8 is 3.
+    The logarithm base 2 of 16 is 4.
+
+  https://en.wikipedia.org/wiki/Logarithm#:~:text=In%20mathematics%2C%20the%20logarithm%20is,to%20produce%20that%20number%20x.
+
+------------
+
+What is a factorial in mathematics:
+
+  N! is N factorial.
+  N! => N * (N-1) * (N-2) * (N-3) ... until N === 1.
+
+  For Example:
+
+    1! = 1
+    2! = 2*1
+    3! = 3*2*1
+    4! = 4*3*2*1
+
+---------------------------------
+---------------------------------
+
+7: COMPARING RUNTIME FUNCTIONS
+
+The runtime of some very common algorithms going from fastest at the top to slowest at the bottom is as follows:
+
+  Log N: These algorithms are considered extremely fast.
+  N^0.5: Fast but not as fast as LogN
+  N: Pretty fast.
+  N^2: These algorithms are often useful but can take a while to finish.
+  2^N: Considerably slower than N^2, especially as N continues to grow. Only practical for quite small values of N.
+  N!: Extremely slow. Only practicaly for very, very small values of N.
+
+One very useful way of comparing algorithm performance is to look at how long it takes for an algorithm with a particular performance can solve a particular problem.
+
+  Example of a comparison of algorithms for a problem where N === 1,000 on a computer that can run 1,000,000 algorithm steps per second:
+
+    Runtime    Number of Steps   Time Needed to Complete
+    O(Log N)   10                0.00001 seconds
+    O(N^0.5)   32                0.00003 seconds
+    O(N)       1,000             0.001 seconds
+    O(N^2)     1,000,000         1 second
+    O(2^N)     1.07 x 10^301     3.40 x 10^287 years
+    N!         4.02 x 10^2567    1.28 x 10^2554 years
+
+  You can also ask how large of a problem can each of these algorithms solve in 1 second:
+
+    Runtime    Number of Inputs
+    O(Log N)   > 1 x 10^300,000
+    O(N^0.5)   1 trillion
+    O(N)       1 million
+    O(N^2)     1 thousand
+    O(2^N)     20
+    N!         10
+
+  Ideally if you have a problem you will be able to find an algorithm that runs in O(Log N) or O(N^0.5) time.
+  However,  if you need to use an O(2^N) or an N! algorithm then your problem size needs to be really small.
+
+---------------------------------
+---------------------------------
+
+8: P AND NP
+
+  P: A set of problems with deterministic polynomial time solutions.
+  NP: A set of problems with non-deterministic polynomial time solutions.
+
+  A deterministic algorithm is an algorithm that performs a known sequence of steps.
+  A non-deterministic algorithm is an algorithm that that does not perform a known sequence of steps. Instead it makes an inspired guess and is then allowed to verify that the guess is correct.
+
+  Does P equal NP is one of the most fundamental questions about algorithms.
+
+  Example using a subset sum algorithm:
+
+    Given a set of numbers is there a subset that adds up to 0?
+      First of numbers: {-10, 60, 95, 25, -70, 55}
+      Answer: -10 + 25 - 70 + 55 = 0
+
+    For the problem listed above, you may discover the answer after looking at the set for a while.
+
+    A deterministic solution would give you a series of steps that you can execute to determine whether there is a zero sum subset.
+    A possible deterministic solution would be to go through the set, create every possible combination, and add them up to see whether the result of that particular combination of numbers is 0.
+    However, an item containing N number of items has O(2^N) subsets.
+    This is why this problem becomes very difficult if the set contains a few thousand numbers.
+
+    A non-deterministic algorithm is allowed to guess a particular subset for the algorithm if one exists.
+    It then needs to verify that the guess is correct.
+    If there is no solution then the non-deterministic algorithm just needs to say this.
+    It does not need to prove it.
+
+    For the same subset up above we could grab a random subset of numbers.
+    We can then check to see if the sum of the random group of numbers that we selected actually is 0.
+      Attempt 1: -10 + 60 => 50 (Unsuccessful)
+    If they actually do equal 0, then the algorithm is complete.
+    If they do not equal 0, then we try a different subset.
+      Attempt 2: -10 + 60 + 95 => 145 (Unsuccessful)
+    We repeat this process until we find a subset whose sum is 0.
+    Because there are O(N) number of different subsets, this algorithm has O(N) time.
+    This means that it is an O(N) non-deterministic algorithm.
+
+  All polynomial time algorithms can be solved using non-polynomial time algorithms.
+  However all non-polynomial time algorithms are not polynomial time algorithms.
+  Because of this polynomial time algorithms are a subset of non-polynomial time algorithms.
